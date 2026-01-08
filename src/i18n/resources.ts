@@ -20,9 +20,9 @@ export type Namespace = typeof NAMESPACES[number]
 export const DEFAULT_NAMESPACE: Namespace = 'common'
 
 /**
- * Language information
+ * Language information interface (aux)
  */
-export interface LanguageInfo {
+interface LanguageInfo {
     code: SupportedLanguage 
     name: string
 }
