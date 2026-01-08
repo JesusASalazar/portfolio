@@ -1,29 +1,26 @@
-/* import i18n from 'i18next'
+// src/i18n/config.ts
+import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import HttpBackend from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
-import { resources } from './resources'  // ← Un solo import
+import { DEFAULT_LANGUAGE, DEFAULT_NAMESPACE, SUPPORTED_LANGUAGES } from './resources'
 
 i18n
+  .use(HttpBackend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources,  // ← Directamente
-    fallbackLng: 'es',
-    supportedLngs: ['es', 'en'],
-    defaultNS: 'common',
-    ns: ['common', 'home', 'projects', 'about'],
-    detection: {
-      order: ['path', 'localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'i18nextLng',
-    },
-    interpolation: {
-      escapeValue: false
-    },
-    debug: false,
-    react: {
-      useSuspense: false
-    }
-  })
+    fallbackLng: DEFAULT_LANGUAGE,
+    supportedLngs: SUPPORTED_LANGUAGES,
+    defaultNS: DEFAULT_NAMESPACE,
 
-export default i18n */
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
+    },
+
+    ns: DEFAULT_LANGUAGE, 
+
+    interpolation: {
+      escapeValue: false,
+    },
+  })
